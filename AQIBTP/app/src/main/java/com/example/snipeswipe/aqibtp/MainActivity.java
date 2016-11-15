@@ -31,6 +31,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -43,6 +44,8 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.ByteArrayBuffer;
 import org.json.JSONObject;
+
+import au.com.bytecode.opencsv.CSVReader;
 
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
@@ -78,6 +81,38 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         lat[1] = 28.53456; lon[1] = 77.25675;
 
         setSupportActionBar(toolbar);
+
+        int responseCode;
+        URL address = null;
+        try {
+            address = new URL("http://aqi.indiaspend.org/aq/api/aqfeed/868004022710761/27-07-2016/?format=csv");
+
+            HttpURLConnection conn = (HttpURLConnection) address.openConnection();
+            responseCode=conn.getResponseCode();
+            Log.d("Data CSV", String.valueOf(responseCode));
+            conn.setRequestMethod("GET");
+            conn.setDoOutput(true);
+            conn.connect();
+
+            Log.d("Data CSV", "connected");
+            InputStream is = conn.getInputStream();
+            Log.d("Data CSV", "reading");
+
+            BufferedInputStream bis = new BufferedInputStream(is);
+            ByteArrayBuffer bab = new ByteArrayBuffer(64);
+            int current = 0;
+
+            while((current = bis.read()) != -1) {
+                Log.d("Data CSV", "reading");
+                bab.append((byte)current);
+            }
+            Log.d("Data CSV", "reading");
+
+            t2.setText(String.valueOf(bab));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 //        mGoogleApiClient = new GoogleApiClient.Builder(this)
 //                .enableAutoManage(this /* FragmentActivity */,
@@ -189,6 +224,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         /*Log.d(String.valueOf(mLastLocation.getLatitude()), "awsaasd");
         Log.d(String.valueOf(mLastLocation.getLongitude()), "awsaasd");*/
 
+
         double min = Double.MAX_VALUE;
         int selectedSensor = Integer.MAX_VALUE;
         for (int i = 0; i < NumOfSensors; i++) {
@@ -201,8 +237,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         }
         Log.d("Selected sensor", String.valueOf(selectedSensor));
+//
+//        //Fetching csv for selected sensor
+////        String url = "http://aqi.indiaspend.org/aq/api/aqfeed/"+sensorIMEI[selectedSensor]+"/27-07-2016/?format=csv";
+////        String url = "http://aqi.indiaspend.org/aq/api/aqfeed/868004022710761/27-07-2016/?format=csv";
+////
+//
 
         Log.d("Data CSV", "End");
+
     }
 
     private void downloadUsingStream(String urlStr, String file) throws IOException{

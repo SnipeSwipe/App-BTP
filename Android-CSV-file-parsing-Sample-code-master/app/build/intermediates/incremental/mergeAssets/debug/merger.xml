@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/SnipeSwipe/Downloads/Android-CSV-file-parsing-Sample-code-master/app/src/main/assets"><file name="Category.csv" path="/Users/SnipeSwipe/Downloads/Android-CSV-file-parsing-Sample-code-master/app/src/main/assets/Category.csv"/></source></dataSet><dataSet config="debug"><source path="/Users/SnipeSwipe/Downloads/Android-CSV-file-parsing-Sample-code-master/app/src/debug/assets"/></dataSet></merger>

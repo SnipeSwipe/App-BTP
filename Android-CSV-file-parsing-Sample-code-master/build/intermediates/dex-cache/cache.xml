@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/SnipeSwipe/Downloads/Android-CSV-file-parsing-Sample-code-master/app/libs/opencsv-2.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c0ffd01065bc3fe571e1a4eb7014a03333f0663d">
+        <dex dex="/Users/SnipeSwipe/Downloads/Android-CSV-file-parsing-Sample-code-master/app/build/intermediates/pre-dexed/debug/opencsv-2.3-f66dde5e289a4153633e2289fc527a376f2b0267.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/SnipeSwipe/Downloads/Android-CSV-file-parsing-Sample-code-master/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+    <string name="app_name">CSVParsingExample</string>
+    <string name="hello">Hello World, CSVParsingExampleActivity!</string>
+    <string name="labelSelectCate">Select Category</string>
+</resources>
